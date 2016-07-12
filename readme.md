@@ -3,14 +3,11 @@
 >Simple software that gets new deals posted on /r/GameDeals and displays them in a notification:
 
 ### Features
-  - Quiet Hours
   - Enable/Disable option
 
   
 # Preview
-![alt tag](http://hotlinkhere)
-
->put link here
+![alt tag](http://i.imgur.com/tVcAkis.png)
 
 
 # Build info
@@ -20,6 +17,7 @@
 
 ### Java
 >Project is built on JDK 1.8
+
 # License
 
 >MIT
