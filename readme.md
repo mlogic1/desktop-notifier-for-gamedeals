@@ -7,13 +7,16 @@
 
   
 # Preview
+### Notification
 ![alt tag](http://i.imgur.com/tVcAkis.png)
+
+### System tray
+![alt tag](http://i.imgur.com/MdOq9xq.png)
 
 
 # Build info
 ### IDE
->This is an Eclipse project
->Simply import it in your workspace
+>This is an Eclipse project. Simply import it in your workspace
 
 ### Java
 >Project is built on JDK 1.8
