@@ -20,7 +20,8 @@ public class TimerHandler extends Thread {
 		timer = new Timer();
 	
 		// Create task that repeats itself at fixed time
-		timer.scheduleAtFixedRate(job, 0, 250 * 1000);
+		timer.scheduleAtFixedRate(job, 0, 3600 * 1000);		// 3600 (1h) seconds to ms
+		// Fix this so the user can choose the refresh time
 	}
 
 }

@@ -70,11 +70,14 @@ public class TimedJob extends TimerTask {
 		ReadDeals = xmlHandler.GetAllReadDeals();			// Load all read deals to array list
 		NewDeals = xmlHandler.FilterReadDeals(ReadDeals, ApiDeals);	// Filter all the deals that the user has seen
 		
+		
 		String[] message = new String[NewDeals.size()];	// Message that is displayed to the user
 	
 		// Add each new deal to the message (seperate deals with a blank space)
+		// Add each new deal to read deals in the .xml file, so they won't be shown twice
 		for(int i=0;i<NewDeals.size();i++){
 			message[i] = NewDeals.get(i).GetName();
+			xmlHandler.AddIdToXml(NewDeals.get(i).GetID(), NewDeals.get(i).GetName(), NewDeals.get(i).GetURL());
 		}
 		
 		

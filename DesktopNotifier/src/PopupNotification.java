@@ -4,21 +4,27 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.ScrollPane;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.ScrollPaneConstants;
+
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -43,11 +49,8 @@ public class PopupNotification extends Thread implements ActionListener {
 	private JLabel topMiddleText;
 	private JButton btn2;
 	
-	
-	
-	// TODO
-	// Make the notification bar close itself on timer
-	// Put the frame in top right corner of the screen
+	private int PopupTime = 7000;		// Time in ms how long will the popup be displayed
+	boolean soundEnabled = true;		// Does the user want sound
 	
 	// Replace this with proper Arraylist
 	String[] dealNames;
@@ -138,13 +141,45 @@ public class PopupNotification extends Thread implements ActionListener {
 			panelBottom.add( entryLabel, BorderLayout.CENTER);
 		}
 		
-		int height = panelBottom.getHeight();
-		
-		frame.setVisible(true);
 		frame.pack();
+		
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();	// Get screen size
+		int x = (int) dimension.getWidth();	// Get width only
+		x -= frame.getWidth() + 20;	// get x coordinate for frame + 20
+		frame.setLocation(x, 20);	// set it in the top right corner
+		frame.setVisible(true);
+
+		ActionListener ClosePopup = new ActionListener() {
+		      public void actionPerformed(ActionEvent evt) {
+		          frame.dispose();
+		      }
+		  };
+		  
+		  new javax.swing.Timer(PopupTime, ClosePopup).start();		// Start the timer that removes the popup
+		  
+		  // Play the sound
+
+		  if(soundEnabled){
+			  
+			try {
+				Clip clip = AudioSystem.getClip();
+				clip.open(AudioSystem.getAudioInputStream(new File("notification.wav")));
+				clip.start();
+			} catch (UnsupportedAudioFileException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (LineUnavailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+              
+		  }  
 	}
 
-
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
