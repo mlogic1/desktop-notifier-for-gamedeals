@@ -103,7 +103,7 @@ public class SysTrayIcon {
 	
 	
 	private void ShowAboutDialog(){
-		String message = "Code: Filip Radic\n\nReddit icon by Martz90 under\nCC Attribution-Noncommercial-No Derivate 4.0\n\nApps preferences desktop notification Icon by Oxygen Team under\nGNU Lesser General Public License";
+		String message = "Code: mlogic1\n\nReddit icon by Martz90 under\nCC Attribution-Noncommercial-No Derivate 4.0\n\nApps preferences desktop notification Icon by Oxygen Team under\nGNU Lesser General Public License";
 		JOptionPane.showMessageDialog(new Frame(), message, "Desktop Notifier for /r/GameDeals", 1);
 	}
 	
